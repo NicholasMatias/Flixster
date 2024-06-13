@@ -23,7 +23,6 @@ export default function Modal({title, releaseDate, overview,genres,trailer, runt
 
       {modal && (
         <div className="overlay" onClick={toggleModal}>
-          <div  className="modal" ></div>
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="Image could not be loaded." />
             <h2>{title}</h2>
