@@ -2,6 +2,12 @@ import './MovieList.css';
 import MovieCard from './MovieCard';
 import {useState, useEffect} from 'react';
 function MovieList(){
+
+
+
+
+
+
     
     // const[search, setSearch] = useState('');
     const [page, setPage] = useState(1);
@@ -50,13 +56,15 @@ function MovieList(){
 
     return(
         <div>
-            <div className='search_bar_container'>
-            {/* value = {query }onChange={e => setQuery(e.target.value)} */}
+            <div id='search_bar_container'>
                 <input  id="search_bar" placeholder='Search for movies...' onChange={updateSearch}>
                 
                 </input>
-                
-
+                <div id='sort_movies_container'>
+                    <button id='sort_movies'>
+                        Sort-by
+                    </button>
+                </div>
             </div>
             <div className='movies'>
                 {/* {console.log(movieList)} */}
