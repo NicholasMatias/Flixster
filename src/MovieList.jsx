@@ -12,7 +12,6 @@ function MovieList(){
     
 
     useEffect(()=>{
-        if(sortby==="" && query===""){
         const options = {
             method: 'GET',
             headers: {
@@ -20,6 +19,8 @@ function MovieList(){
               Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
             }
           };
+        if(sortby==="" && query===""){
+        
           
           fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, options)
             .then(response => response.json())
@@ -27,13 +28,7 @@ function MovieList(){
             .catch(err => console.error(err));
         }
         else if(query!==""){
-            const options = {
-                method: 'GET',
-                headers: {
-                  accept: 'application/json',
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
-                }
-              };
+            
               
               fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`, options)
                 .then(response => response.json())
@@ -41,13 +36,7 @@ function MovieList(){
                 .catch(err => console.error(err));
         }
         else if(sortby!==""){
-            const options = {
-                method: 'GET',
-                headers: {
-                  accept: 'application/json',
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
-                }
-              };
+            
               
               fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${sortby}`, options)
                 .then(response => response.json())
