@@ -4,92 +4,15 @@ import {useState, useEffect} from 'react';
 
 function MovieList(){
     
-    // const[search, setSearch] = useState('');
     const [page, setPage] = useState(1);
     const [movieList, setMovieList] = useState([]);
-    // const [query, setQuery] = useState('');
-    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [query, setQuery] = useState('');
     const [sortby, setSortby] = useState('');
-    const [sortedMovieList, setSortedMovieList] = useState([]);
-
     
-
-
-    console.log("curr page",page)
     
-
-    
-
-    function updateSearch(e){
-        setFilteredMovies(
-            movieList.filter(movie => movie.title.toLowerCase().includes((e.target.value).toLowerCase()))
-        )
-
-    }
-    useEffect(()=>{
-        setFilteredMovies(movieList);
-    },[movieList])
-
-
-
-    // const filteredMovies = movieList.filter(movie => {
-    //     return movie.title.toLowerCase().includes(query.toLowerCase())
-    // },[movieList, query])
-
-
-    useEffect(() =>{
-        // if sortby==="" {
-
-            // if page === 1 {}
-            // else {}
-        // }
-        if (page >1 && sortby === ""){
-        const options = {
-            method: 'GET',
-            headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
-            }
-        };
-        
-        fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, options)
-            .then(response => response.json())
-            .then(response => {
-                console.log(response.results)
-                return response
-            })
-            .then(response => setMovieList([...movieList, ...response.results]))
-            .catch(err => console.error(err));
-        }
-        if(page === 1 && sortby === ""){
-            console.log("inside now playing useeffect")
-        const options = {
-            method: 'GET',
-            headers: {
-            accept: 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
-            }
-          };
-         
-        fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1`, options)
-            .then(response => response.json())
-            .then(response => setMovieList(response.results))
-            .catch(err => console.error(err));
-        }
-    },[page, sortby]);
-
-    const increasePage = () =>{
-        setPage(page+1);
-    }
-
-
-    // useEffect(()=>{
-    //     setFilteredMovies(sortedMovieList);
-    // },[sortedMovieList])
 
     useEffect(()=>{
-        if(sortby!==''){
-            console.log("sortby", sortby)
+        if(sortby==="" && query===""){
         const options = {
             method: 'GET',
             headers: {
@@ -98,31 +21,72 @@ function MovieList(){
             }
           };
           
-          fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=${sortby}`, options)
+          fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`, options)
             .then(response => response.json())
-            .then(response => {
-                console.log("new sorted movies", response)
-                return response
-            })
-            .then(response => setFilteredMovies(response.results))
+            .then(response => setMovieList([...movieList, ...response.results]))
             .catch(err => console.error(err));
         }
-        else{
-            console.log("sort useEffect page")
-            setPage(1);
+        else if(query!==""){
+            const options = {
+                method: 'GET',
+                headers: {
+                  accept: 'application/json',
+                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
+                }
+              };
+              
+              fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=${page}`, options)
+                .then(response => response.json())
+                .then(response => setMovieList([...movieList, ...response.results]))
+                .catch(err => console.error(err));
         }
-    },[sortby])
+        else if(sortby!==""){
+            const options = {
+                method: 'GET',
+                headers: {
+                  accept: 'application/json',
+                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
+                }
+              };
+              
+              fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${sortby}`, options)
+                .then(response => response.json())
+                .then(response => setMovieList([...movieList, ...response.results]))
+                .catch(err => console.error(err));
+        }
+    },[page,query,sortby])
 
-    function updateSortby(e){
-        setSortby(e.target.value);
-        console.log(e.target.value);
+   
+
+
+
+    const updateSearch = (e) => {
+        setQuery(e.target.value);
+        setMovieList([])
+        setPage(1);
     }
+
+
+    const updateSortby = (e) =>{
+        setSortby(e.target.value);
+        setPage(1);
+        setMovieList([]);
+        setQuery("");
+    }
+     
+
+    const increasePage = () =>{
+        setPage(page+1);
+    }
+
+
+
+   
 
 
     return(
         <div>
             <div className='search_bar_container'>
-            {/* value = {query }onChange={e => setQuery(e.target.value)} */}
                 <input  id="search_bar" placeholder='Search for movies...' onChange={updateSearch}>
                 
                 </input>
@@ -136,8 +100,7 @@ function MovieList(){
                 </div>
             </div>
             <div className='movies'>
-                {/* {console.log(movieList)} */}
-                {filteredMovies?.map((movie, i)=> {return (
+                {movieList?.map((movie, i)=> {return (
                     <MovieCard key={i}
                     title={movie.title}
                     avgRating={movie.vote_average}

@@ -4,7 +4,6 @@ import Modal from './Modal';
 import PropType from 'prop-types';
 
 function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer, genres, runtime, backdrop_photo, movieID }) {
-    console.log("MovieCard", movieID)
     return (
         <>
 
