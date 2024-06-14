@@ -6,10 +6,7 @@ import { useState } from 'react';
 import WatchedButton from './WatchedButton';
 
 function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer, genres, runtime, backdrop_photo, movieID }) {
-    const [isFavorite, setIsFavorite] = useState(false);
-    const toggleFavorite = () =>{
-        setIsFavorite(!isFavorite);
-    }
+    
     return (
         <>
 
@@ -30,10 +27,7 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
 
                 />
 
-                    <FavoriteButton
-                        isFavorite={isFavorite}
-                        onToggle={toggleFavorite}
-                    />
+                    <FavoriteButton/>
                     
                     <WatchedButton/>
                 </div>

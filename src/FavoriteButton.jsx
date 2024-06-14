@@ -1,13 +1,18 @@
 import './FavoriteButton.css';
 import PropType from 'prop-types';
+import { useState } from 'react';
 
 
 
 
-const FavoriteButton = ({isFavorite, onToggle}) =>{
+const FavoriteButton = () =>{
+    const [isFavorite, setIsFavorite] = useState(false);
+    const toggleFavorite = () =>{
+        setIsFavorite(!isFavorite);
+    }
     return(
         <div className='button_container'>
-            <button className={`favorite-button ${isFavorite ? 'favorite': ''}`} onClick={onToggle}>
+            <button className={`favorite-button ${isFavorite ? 'favorite': ''}`} onClick={toggleFavorite}>
                 <i className={`fa ${isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}`}></i>
             </button>
         </div>
