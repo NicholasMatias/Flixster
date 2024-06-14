@@ -11,7 +11,7 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
         <>
 
             <div className='movie-card'>
-                {imgSrc ? <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} alt="Image could not be loaded." className='movieImage' />:<img src={'/src/DefaultCardPhoto.png'} className='movieImage'></img>}
+                {imgSrc ? <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} alt="Image could not be loaded." className='movieImage' />:<img src={'/src/assets/DefaultCardPhoto.png'} className='movieImage'></img>}
                 {/* <h3 className='movieTitle'>{title}</h3> */}
                 <p className='movieAvgRating'>Rating: {avgRating}</p>
                 <div className="button_container">
