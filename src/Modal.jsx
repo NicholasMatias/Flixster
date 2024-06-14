@@ -4,7 +4,8 @@ import "./Modal.css";
 
 export default function Modal({ title, releaseDate, overview, backdrop_path, movieID }) {
   const [modal, setModal] = useState(false);
-  const [movieKey, setMovieKey] = useState("")
+  const [movieKey, setMovieKey] = useState("");
+  const [movieRuntime, setRuntime] = useState(0);
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -14,6 +15,11 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
   } else {
     document.body.classList.remove('active-modal')
   }
+
+
+
+
+
   useEffect(()=>{
       const options = {
         method: 'GET',
@@ -29,9 +35,14 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
         .then(response => response.find(
           (movie) => movie.site === "YouTube" && movie.type ==="Trailer"
           ))
-        .then((movie)=>setMovieKey(`https://www.youtube.com/embed/${movie.key}`))
+        .then((movie)=>{
+          setMovieKey(`https://www.youtube.com/embed/${movie.key}`),
+          setRuntime(movie.runtime)
+          // console.log(movieRuntime);
+        })
 
-        .catch(err => console.error(err));
+        
+          // .catch(err => console.error(err));
   },[movieID])
     
 
@@ -46,7 +57,6 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
 
       {modal && (
         <div className="overlay" onClick={toggleModal}>
-          <div className="modal" ></div>
           <div className="background-image" style={{ 
       backgroundImage: `url(https://image.tmdb.org/t/p/w500${backdrop_path})` 
     }}>
@@ -57,14 +67,14 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
             <h2>{title}</h2>
             <h3>Released on: {releaseDate}</h3>
             {/* <h3>Genres: {genres}</h3> */}
-            {/* <h3>Runtime: {runtime}</h3> */}
+            {/* <h3>Runtime: {movieRuntime} minutes</h3> */}
             <p>
               Overview: {overview}
             </p>
             <div className="trailer_container">
               <div className="trailer_wrapper">
-                <iframe className= "trailer" title="YouTube Video Player"  allowFullScreen src={movieKey} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
-                </iframe>
+                {modal ? <iframe className= "trailer" title="YouTube Video Player"  allowFullScreen src={movieKey} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+                </iframe> : null}
               </div>
             </div>
             

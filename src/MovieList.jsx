@@ -1,7 +1,6 @@
 import './MovieList.css';
 import MovieCard from './MovieCard';
 import {useState, useEffect} from 'react';
-import Sidebar from './Sidebar';
 
 function MovieList(){
     
@@ -100,7 +99,7 @@ function MovieList(){
                     <MovieCard key={i}
                     title={movie.title}
                     avgRating={movie.vote_average}
-                    imgSrc={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                    imgSrc={movie.poster_path}
                     description={movie.overview}
                     releaseDate={movie.release_date}
                     trailer=''

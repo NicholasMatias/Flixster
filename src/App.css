@@ -20,6 +20,10 @@
   justify-content: center;
   box-sizing: border-box;
   border: .5rem black solid;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
 }
 
 

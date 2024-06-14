@@ -16,6 +16,8 @@
 .loadMore-container{
     display: flex;
     justify-content: center;
+    margin-bottom: 70px;
+
 }
 
 .search_bar_container{

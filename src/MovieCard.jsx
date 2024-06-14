@@ -2,8 +2,8 @@ import './MovieCard.css';
 import FavoriteButton from './FavoriteButton';
 import Modal from './Modal';
 import PropType from 'prop-types';
-import { useState } from 'react';
 import WatchedButton from './WatchedButton';
+
 
 function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer, genres, runtime, backdrop_photo, movieID }) {
     
@@ -11,10 +11,12 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
         <>
 
             <div className='movie-card'>
-                <img src={imgSrc} alt="Image could not be loaded." className='movieImage' />
+                {imgSrc ? <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} alt="Image could not be loaded." className='movieImage' />:<img src={'/src/DefaultCardPhoto.png'} className='movieImage'></img>}
                 {/* <h3 className='movieTitle'>{title}</h3> */}
                 <p className='movieAvgRating'>Rating: {avgRating}</p>
                 <div className="button_container">
+                
+                
                 <Modal
                     title={title}
                     releaseDate={releaseDate}
