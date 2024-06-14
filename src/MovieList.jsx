@@ -54,7 +54,7 @@ function MovieList(){
                 .then(response => setMovieList([...movieList, ...response.results]))
                 .catch(err => console.error(err));
         }
-    },[page,query,sortby])
+    },[page, query, sortby])
 
    
 
@@ -92,7 +92,7 @@ function MovieList(){
                 </input>
                 <div id='dropdown_container'>
                         <select className='dropdown_button' onChange={updateSortby}>
-                            <option value="">Unsorted</option>
+                            <option value="">Now Playing</option>
                             <option value="title.asc">A-Z</option>
                             <option value="primary_release_date.desc">Release Date</option>
                             <option value="vote_average.desc">Rating</option>

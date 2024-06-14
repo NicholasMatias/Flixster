@@ -1,0 +1,23 @@
+.visibility-button{
+    background: none;
+    border: none;
+    cursor:pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    
+}
+
+.visibility-button i{
+    color: #254bbc;
+    transition: color .3s;
+
+}
+
+.visibility-button:hover i{
+    color: #b22222;
+}
+
+.visibility-button:hover{
+    background:none;
+}

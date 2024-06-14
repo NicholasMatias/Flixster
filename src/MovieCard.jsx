@@ -3,6 +3,7 @@ import FavoriteButton from './FavoriteButton';
 import Modal from './Modal';
 import PropType from 'prop-types';
 import { useState } from 'react';
+import WatchedButton from './WatchedButton';
 
 function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer, genres, runtime, backdrop_photo, movieID }) {
     const [isFavorite, setIsFavorite] = useState(false);
@@ -28,12 +29,13 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
                     movieID={movieID}
 
                 />
-                
+
                     <FavoriteButton
                         isFavorite={isFavorite}
                         onToggle={toggleFavorite}
                     />
-
+                    
+                    <WatchedButton/>
                 </div>
 
             </div>

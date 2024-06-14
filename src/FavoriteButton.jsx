@@ -1,4 +1,5 @@
 import './FavoriteButton.css';
+import PropType from 'prop-types';
 
 
 
@@ -13,4 +14,9 @@ const FavoriteButton = ({isFavorite, onToggle}) =>{
     )
 }
 
+
+FavoriteButton.propTypes = {
+    isFavorite: PropType.bool.isRequired,
+    onToggle: PropType.bool.isRequired
+};
 export default FavoriteButton;
