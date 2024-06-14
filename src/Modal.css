@@ -47,3 +47,27 @@
 .close-modal:hover{
     cursor: pointer;
 }
+
+.trailer_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.trailer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.trailer_wrapper{
+    position: relative;
+    width: 70%;
+    padding-bottom: 45.25%;
+    height: 0;
+}

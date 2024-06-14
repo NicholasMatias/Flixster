@@ -148,6 +148,7 @@ function MovieList(){
                     genres={movie.genre_ids}
                     runtime=''
                     backdrop_photo={movie.backdrop_path}
+                    movieID={movie.id}
                     />)
                     
                 })}
