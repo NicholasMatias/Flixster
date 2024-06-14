@@ -1,13 +1,31 @@
 .favorite-button{
-    cursor:pointer;
-    color:red;
-    display:flex;
-    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: #ff0000;
+    cursor: pointer;
+    font-size:1.5rem;
+    display: flex;
+    align-items: center;
+    padding: 0;
 }
-.favorite-button .fa-heart:hover{
-    transition:color .1s ease-in-out;
+
+.favorite-button i{
+    color: #ff0000;
+    transition: .3s;
+    background: none;
 }
-.favorite-button .fa-heart:hover{
-    color: darkred;
-    font-weight: bold;
+
+.favorite-button.favorite i{
+    color: #ff0000;
 }
+
+.favorite-button:hover i{
+    color: #b22222;
+}
+
+.favorite-button:hover{
+    background: none;
+    
+}
+
+

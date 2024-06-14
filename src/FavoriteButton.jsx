@@ -5,9 +5,11 @@ import './FavoriteButton.css';
 
 const FavoriteButton = ({isFavorite, onToggle}) =>{
     return(
-        <button className={`favorite-button ${isFavorite ? 'favorite': ''}`} onClick={onToggle}>
-            <i className={`fa-regular fa-heart ${isFavorite ? 'favorite' : ''}`}></i>
-        </button>
+        <div className='button_container'>
+            <button className={`favorite-button ${isFavorite ? 'favorite': ''}`} onClick={onToggle}>
+                <i className={`fa ${isFavorite ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}`}></i>
+            </button>
+        </div>
     )
 }
 

@@ -1,9 +1,14 @@
 import './MovieCard.css';
-/*import FavoriteButton from './FavoriteButton';*/
+import FavoriteButton from './FavoriteButton';
 import Modal from './Modal';
 import PropType from 'prop-types';
+import { useState } from 'react';
 
 function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer, genres, runtime, backdrop_photo, movieID }) {
+    const [isFavorite, setIsFavorite] = useState(false);
+    const toggleFavorite = () =>{
+        setIsFavorite(!isFavorite);
+    }
     return (
         <>
 
@@ -11,7 +16,7 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
                 <img src={imgSrc} alt="Image could not be loaded." className='movieImage' />
                 {/* <h3 className='movieTitle'>{title}</h3> */}
                 <p className='movieAvgRating'>Rating: {avgRating}</p>
-
+                <div className="button_container">
                 <Modal
                     title={title}
                     releaseDate={releaseDate}
@@ -23,7 +28,13 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
                     movieID={movieID}
 
                 />
-                {/* <FavoriteButton/> */}
+                
+                    <FavoriteButton
+                        isFavorite={isFavorite}
+                        onToggle={toggleFavorite}
+                    />
+
+                </div>
 
             </div>
 
