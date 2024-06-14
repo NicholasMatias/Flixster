@@ -41,14 +41,19 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
   return (
     <>
       <button onClick={toggleModal} className="btn-modal">
-        View
+        <h3 className="view-button">View</h3>
       </button>
 
       {modal && (
         <div className="overlay" onClick={toggleModal}>
           <div className="modal" ></div>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="Image could not be loaded." />
+          <div className="background-image" style={{ 
+      backgroundImage: `url(https://image.tmdb.org/t/p/w500${backdrop_path})` 
+    }}>
+          <div className="modal-content" onClick={e => e.stopPropagation()} >
+            {/* <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="Image could not be loaded." /> */}
+            
+            
             <h2>{title}</h2>
             <h3>Released on: {releaseDate}</h3>
             {/* <h3>Genres: {genres}</h3> */}
@@ -62,10 +67,12 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
                 </iframe>
               </div>
             </div>
+            
 
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
             </button>
+          </div>
           </div>
         </div>
       )}

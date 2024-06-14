@@ -28,6 +28,7 @@
 }
 .movieAvgRating{
     margin:2px;
+    color: black;
 }
 .button_container{
     display: flex;
