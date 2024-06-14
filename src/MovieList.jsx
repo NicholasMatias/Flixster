@@ -90,9 +90,7 @@ function MovieList(){
 
                         </select>
                 </div>
-                {/* <div id='sidebar_container'>
-                    <Sidebar/>
-                </div> */}
+                
             </div>
             <div className='movies'>
                 {movieList?.map((movie, i)=> {return (

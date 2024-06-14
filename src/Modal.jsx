@@ -5,7 +5,6 @@ import "./Modal.css";
 export default function Modal({ title, releaseDate, overview, backdrop_path, movieID }) {
   const [modal, setModal] = useState(false);
   const [movieKey, setMovieKey] = useState("");
-  const [movieRuntime, setRuntime] = useState(0);
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -36,9 +35,7 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
           (movie) => movie.site === "YouTube" && movie.type ==="Trailer"
           ))
         .then((movie)=>{
-          setMovieKey(`https://www.youtube.com/embed/${movie.key}`),
-          setRuntime(movie.runtime)
-          // console.log(movieRuntime);
+          setMovieKey(`https://www.youtube.com/embed/${movie.key}`)          // console.log(movieRuntime);
         })
 
         
@@ -61,13 +58,11 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
       backgroundImage: `url(https://image.tmdb.org/t/p/w500${backdrop_path})` 
     }}>
           <div className="modal-content" onClick={e => e.stopPropagation()} >
-            {/* <img src={`https://image.tmdb.org/t/p/w500${backdrop_path}`} alt="Image could not be loaded." /> */}
             
             
             <h2>{title}</h2>
             <h3>Released on: {releaseDate}</h3>
-            {/* <h3>Genres: {genres}</h3> */}
-            {/* <h3>Runtime: {movieRuntime} minutes</h3> */}
+           
             <p>
               Overview: {overview}
             </p>
