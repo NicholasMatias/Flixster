@@ -1,6 +1,7 @@
 import './MovieList.css';
 import MovieCard from './MovieCard';
 import {useState, useEffect} from 'react';
+import Sidebar from './Sidebar';
 
 function MovieList(){
     
@@ -83,10 +84,16 @@ function MovieList(){
                         <select className='dropdown_button' onChange={updateSortby}>
                             <option value="">Now Playing</option>
                             <option value="title.asc">A-Z</option>
+                            <option value="title.desc">Z-A</option>
                             <option value="primary_release_date.desc">Release Date</option>
-                            <option value="vote_average.desc">Rating</option>
+                            <option value="vote_average.desc">Best Rating</option>
+                            <option value="popularity.desc">Most Popular</option>
+
                         </select>
                 </div>
+                {/* <div id='sidebar_container'>
+                    <Sidebar/>
+                </div> */}
             </div>
             <div className='movies'>
                 {movieList?.map((movie, i)=> {return (
