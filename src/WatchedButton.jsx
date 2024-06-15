@@ -3,13 +3,13 @@ import './WatchedButton.css';
 
 
 
-const WatchedButton = () =>{
+const WatchedButton = () => {
     const [isVisible, setIsVisible] = useState(true);
-    const toggleVisibility = () =>{
+    const toggleVisibility = () => {
         setIsVisible(!isVisible);
     }
 
-    return(
+    return (
         <button className='visibility-button' onClick={toggleVisibility}>
             <i className={`fa ${isVisible ? 'fa-eye-slash' : 'fa-eye'}`}></i>
         </button>

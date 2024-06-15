@@ -3,35 +3,36 @@ import FavoriteButton from './FavoriteButton';
 import Modal from './Modal';
 import PropType from 'prop-types';
 import WatchedButton from './WatchedButton';
+import defaultCardImg from "./assets/DefaultCardPhoto.png"
 
 
 function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer, genres, runtime, backdrop_photo, movieID }) {
-    
+
     return (
         <>
 
             <div className='movie-card'>
-                {imgSrc ? <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} alt="Image could not be loaded." className='movieImage' />:<img src={'/src/assets/DefaultCardPhoto.png'} className='movieImage'></img>}
+                {imgSrc ? <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} alt="Image could not be loaded." className='movieImage' /> : <img src={defaultCardImg} className='movieImage'></img>}
                 {/* <h3 className='movieTitle'>{title}</h3> */}
                 <p className='movieAvgRating'>Rating: {avgRating}</p>
                 <div className="button_container">
-                
-                
-                <Modal
-                    title={title}
-                    releaseDate={releaseDate}
-                    overview={description}
-                    genres={genres}
-                    trailer={trailer}
-                    runtime={runtime}
-                    backdrop_path={backdrop_photo}
-                    movieID={movieID}
 
-                />
 
-                    <FavoriteButton/>
-                    
-                    <WatchedButton/>
+                    <Modal
+                        title={title}
+                        releaseDate={releaseDate}
+                        overview={description}
+                        genres={genres}
+                        trailer={trailer}
+                        runtime={runtime}
+                        backdrop_path={backdrop_photo}
+                        movieID={movieID}
+
+                    />
+
+                    <FavoriteButton />
+
+                    <WatchedButton />
                 </div>
 
             </div>

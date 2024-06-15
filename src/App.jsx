@@ -3,19 +3,19 @@ import MovieList from './MovieList';
 
 const App = () => {
 
-  
 
-  return(
-  <div className="App">
-    <header className='App-header'>
-      <h1 className='site-title'>Flixster</h1>
-    </header>
-    <main>
-      <MovieList />
-    </main>
-    <footer className='App-footer'>
-    </footer>
-  </div>
+
+  return (
+    <div className="App">
+      <header className='App-header'>
+        <h1 className='site-title'>Flixster</h1>
+      </header>
+      <main>
+        <MovieList />
+      </main>
+      <footer className='App-footer'>
+      </footer>
+    </div>
   );
 }
 

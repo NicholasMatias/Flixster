@@ -19,32 +19,32 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
 
 
 
-  useEffect(()=>{
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
-        }
-      };
-      
-      fetch(`https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`, options)
-        .then(response => response.json())
-        .then(response => response.results)
-        .then(response => response.find(
-          (movie) => movie.site === "YouTube" && movie.type ==="Trailer"
-          ))
-        .then((movie)=>{
-          setMovieKey(`https://www.youtube.com/embed/${movie.key}`)          // console.log(movieRuntime);
-        })
+  useEffect(() => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTk4ZTdhNDAzODljYmRlYjQwMTQ0OTQ1ZGQwYTMxZiIsInN1YiI6IjY2Njc3MTY3ZGQzYTMzZDdhZjg1YTVhMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DMEfKAm2887y-Rm2Qj9F66yNZjFJ28QrgcE2ktrx8tc'
+      }
+    };
 
-        
-          // .catch(err => console.error(err));
-  },[movieID])
-    
+    fetch(`https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`, options)
+      .then(response => response.json())
+      .then(response => response.results)
+      .then(response => response.find(
+        (movie) => movie.site === "YouTube" && movie.type === "Trailer"
+      ))
+      .then((movie) => {
+        setMovieKey(`https://www.youtube.com/embed/${movie.key}`)          // console.log(movieRuntime);
+      })
 
-  
-    
+
+    // .catch(err => console.error(err));
+  }, [movieID])
+
+
+
+
 
   return (
     <>
@@ -54,30 +54,30 @@ export default function Modal({ title, releaseDate, overview, backdrop_path, mov
 
       {modal && (
         <div className="overlay" onClick={toggleModal}>
-          <div className="background-image" style={{ 
-      backgroundImage: `url(https://image.tmdb.org/t/p/w500${backdrop_path})` 
-    }}>
-          <div className="modal-content" onClick={e => e.stopPropagation()} >
-            
-            
-            <h2>{title}</h2>
-            <h3>Released on: {releaseDate}</h3>
-           
-            <p>
-              Overview: {overview}
-            </p>
-            <div className="trailer_container">
-              <div className="trailer_wrapper">
-                {modal ? <iframe className= "trailer" title="YouTube Video Player"  allowFullScreen src={movieKey} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
-                </iframe> : null}
-              </div>
-            </div>
-            
+          <div className="background-image" style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500${backdrop_path})`
+          }}>
+            <div className="modal-content" onClick={e => e.stopPropagation()} >
 
-            <button className="close-modal" onClick={toggleModal}>
-              CLOSE
-            </button>
-          </div>
+
+              <h2>{title}</h2>
+              <h3>Released on: {releaseDate}</h3>
+
+              <p>
+                Overview: {overview}
+              </p>
+              <div className="trailer_container">
+                <div className="trailer_wrapper">
+                  {modal ? <iframe className="trailer" title="YouTube Video Player" allowFullScreen src={movieKey} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture">
+                  </iframe> : null}
+                </div>
+              </div>
+
+
+              <button className="close-modal" onClick={toggleModal}>
+                CLOSE
+              </button>
+            </div>
           </div>
         </div>
       )}
