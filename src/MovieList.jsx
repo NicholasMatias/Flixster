@@ -9,7 +9,8 @@ function MovieList() {
     const [query, setQuery] = useState('');
     const [sortby, setSortby] = useState('');
 
-
+    {/* The useEffect will be triggered each time query (what we are searching for), the page, or sortby (how we choose to sort the movies) is changed.  
+    */}
 
     useEffect(() => {
         const options = {
@@ -45,17 +46,20 @@ function MovieList() {
         }
     }, [page, query, sortby])
 
+    
 
 
-
-
+    {/* Everytime the value in the input tag is changed we will update the query value. This will set off the useEffect as well. This is how the movies are 
+    populated as the user is actively typing. Page is set to one as we want the movies that have titles that are the closest is resemblance to our query (search value) 
+    Lastly, we are resetting the movielist as we do not want to append to the current list. */}
     const updateSearch = (e) => {
         setQuery(e.target.value);
         setMovieList([])
         setPage(1);
     }
 
-
+    {/* Whenever the container with all of the sortby options (the drop down) is changed, we update sortby and set the page equal to 1.
+    Similarly, we set the movie list to empty as we are not appending movies to the current movie list.  */}
     const updateSortby = (e) => {
         setSortby(e.target.value);
         setPage(1);
@@ -78,7 +82,7 @@ function MovieList() {
             <div className='search_bar_container'>
                 <input id="search_bar" placeholder='Search for movies...' onChange={updateSearch}>
 
-                </input>
+                </input> {/* This is the drop down menu which allows the user te choose how the movies are sorted.  */}
                 <div id='dropdown_container'>
                     <select className='dropdown_button' onChange={updateSortby}>
                         <option value="">Now Playing</option>
@@ -92,6 +96,7 @@ function MovieList() {
                 </div>
 
             </div>
+            {/* This will create all of the movie cards. Used the .map function this week as suggested through last weeks feedback.  */}
             <div className='movies'>
                 {movieList?.map((movie, i) => {
                     return (
@@ -111,6 +116,10 @@ function MovieList() {
                 })}
 
             </div>
+
+                {/* Whenever the load more button is pressed the page is incremented by 1. This will then cause the useEffect to be triggered as we are taking into account
+                when the page variable changes. This will lead to the api be called and loading the next page of movies. This applies to now playing and all of the
+                various ways that the movies can be sorted.  */}
 
             <div className='loadMore-container'>
                 <button onClick={increasePage} id='loadMore'>

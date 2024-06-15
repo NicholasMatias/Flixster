@@ -12,12 +12,13 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
         <>
 
             <div className='movie-card'>
+                {/* If the movie poster img is invalid or null then we will display the default card image that I made in figma. Otherwise we will display the 
+                movie's respective poster.  */}
                 {imgSrc ? <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} alt="Image could not be loaded." className='movieImage' /> : <img src={defaultCardImg} className='movieImage'></img>}
-                {/* <h3 className='movieTitle'>{title}</h3> */}
                 <p className='movieAvgRating'>Rating: {avgRating}</p>
                 <div className="button_container">
 
-
+                    {/* passing in all of the information that will be utilized within the modal.  */}
                     <Modal
                         title={title}
                         releaseDate={releaseDate}
@@ -29,7 +30,7 @@ function MovieCard({ title, imgSrc, avgRating, description, releaseDate, trailer
                         movieID={movieID}
 
                     />
-
+                    {/* Each card has a favorite and watched button unique to its card.  */}
                     <FavoriteButton />
 
                     <WatchedButton />

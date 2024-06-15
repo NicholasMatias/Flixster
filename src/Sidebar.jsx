@@ -1,32 +1,43 @@
-import { useState } from 'react';
-import './Sidebar.css';
-
+import "./Sidebar.css";
+import { useState } from "react";
 
 const Sidebar = () => {
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
-    const [sidebar_toggled, set_sidebar_toggled] = useState(false);
-    const toggleShow = () => {
-        set_sidebar_toggled(!sidebar_toggled);
-        console.log("Sidebar show:", sidebar_toggled);
+    const handleSidebarOpen = () => {
+        setSidebarOpen(true);
+    };
 
-    }
+    const handleSidebarClose = () => {
+        setSidebarOpen(false);
+    };
 
     return (
-        <>
-            <nav>
-                <div className='sidebar-container'>
-                    <button className='sidebar-toggle' onClick={toggleShow}>
-
-                    </button>
+        <div className="sidebar">
+            {!sidebarOpen ? (
+                <div className="sidebar_icon" onMouseEnter={handleSidebarOpen}>
+                    <i className="fas fa-bars"></i>
                 </div>
-            </nav>
-
-            <aside className={`${sidebar_toggled ? "visible" : ""}`}>
-
-            </aside>
-
-        </>
-    )
-}
+            ) : (
+                <>
+                    <div className="sidebar_icon" onMouseLeave={handleSidebarClose}>
+                        <i className="fas fa-times"></i>
+                    </div>
+                    <div className="sidebar_items">
+                        
+                        <div className="sidebar_item">
+                            <i className="fas fa-user"></i>
+                            <p>Favorites</p>
+                        </div>
+                        <div className="sidebar_item">
+                            <i className="fas fa-envelope"></i>
+                            <p>Watched</p>
+                        </div>
+                    </div>
+                </>
+            )}
+        </div>
+    );
+};
 
 export default Sidebar;

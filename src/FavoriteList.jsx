@@ -1,7 +1,8 @@
 import { useState } from "react";
 import FavoriteButton from "./FavoriteButton";
 
-
+/* I did not finish implementing this as it coincides with the sidebar. The goal of this component was to add and remove movies from the favorite list when their 
+respective favorite button is toggled.  */
 const FavoriteList = () => {
     const [favoriteCards, setFavoriteCards] = useState([]);
     const toggleFavorite = (card) => {
