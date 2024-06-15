@@ -1,6 +1,6 @@
 import './App.css';
 import MovieList from './MovieList';
-
+import ToTop from './ToTop';
 const App = () => {
 
 
@@ -14,6 +14,7 @@ const App = () => {
         <MovieList />
       </main>
       <footer className='App-footer'>
+        <ToTop/>
       </footer>
     </div>
   );
